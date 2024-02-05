@@ -3,11 +3,14 @@ import styled from "styled-components";
 import MailComponent from './MailComponent';
 
 
+
 function App() {
  
     return (
     <>
-<MailComponent></MailComponent>
+<MailComponent>
+</MailComponent>
+
     </>
   )
 }

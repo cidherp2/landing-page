@@ -1,11 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styled from "styled-components";
 import image1 from "../../assets/pictures/Pest-Control-Frost-1169748167-1.png"
 import image2 from "../../assets/pictures/logo nombre'.png"
 import image3 from  "../../assets/pictures/textura.svg"
 import ContactMenu from "./ContactButton"
+import ContactosArriba from"./ContactosArriba"
+import Footer from './Footer';
 
 import './App.css'
+import { faDisplay } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -24,29 +27,53 @@ width : 95%;
  justify-content:flex-start;
  position: relative;
  bottom:8.5rem;
- display:none;
+
+ @media (min-width: 360px) and (max-width: 900px) {
+   display:flex;
+   width:100%;
+   flex-direction:column;
+  }
+
   `
   const LandingPageContainer = styled.div /*style*/ `
 width : 100%;
  height:100% ;
  display:inline-flex;
 
+ @media (min-width: 360px) and (max-width: 900px) {
+   display:flex;
+   flex-direction:column;
+
+  }
+
+
   `
 
 const LeftImageContainer = styled.div /*style*/ `
 width: 50%;
 padding:2rem;
+@media (min-width: 360px) and (max-width: 900px) {
+   display:none;
+  }
 `
 const RightSideContainer = styled.div /*style*/ `
-width: 50%;
-height:auto;
-display:flex;
-flex-direction:column-reverse;
-justify-content:space-evenly;
-background-image:url(${image3});
-background-size: cover;
+  position: relative;
+  width: 50%;
+  height: auto;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-around;
+  
 
-`
+
+
+  @media (min-width: 360px) and (max-width: 900px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
+  }
+`;
 
 const Imagenes = styled.img /*style*/ `
 object-fit:cover;
@@ -56,6 +83,10 @@ aspect-ratio: 16/9;
 `
 const Imagenes2 = styled.img /*style*/ `
 transform:scale(.75);
+
+@media (min-width: 360px) and (max-width: 900px) {
+  
+  }
 
 `
 
@@ -67,6 +98,8 @@ function MailComponent() {
   const [tipoCliente, setTiipoCliente] =useState('')
   const [mail,setMail]= useState('')
   const [validEmail, setIsValidEmail] = useState(true)
+  const [esVisible, setEsVisible] = useState(false)
+  const [esVisibleContact, setEsVisibleContact] = useState(true)
 
   const emailRegex =  /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -97,6 +130,20 @@ function MailComponent() {
     setTiipoCliente('')
   }
 
+  const appearList = () => {
+    setEsVisible(true)
+    setEsVisibleContact(false)
+}
+  const appearContact = () => {
+    setEsVisibleContact(true)
+    setEsVisible(false)
+}
+
+// useEffect(() => {
+//   // Update the document title using the browser API
+//   appearList();
+// });[]
+
  
 
   const handleSubmit = (e) => {
@@ -109,8 +156,11 @@ function MailComponent() {
   <LeftImageContainer>
   <Imagenes src={image1} alt="hola"></Imagenes>
   </LeftImageContainer>
-  <RightSideContainer  >
-  <ContactMenu></ContactMenu>
+  <RightSideContainer>
+    {esVisibleContact && (
+  <ContactMenu appearList={appearList}> </ContactMenu>
+    )} 
+  {esVisible && (
     <EmailForm>
    <label> Email:</label>
    <input
@@ -188,11 +238,12 @@ function MailComponent() {
     </datalist>
 
     </EmailForm>
-
+    )}
+    <ContactosArriba appearContact={appearContact}/>
     <Imagenes2 src={image2} alt="hola"></Imagenes2>
-
     </RightSideContainer>
     </LandingPageContainer>
+    
     </>
   )
 }

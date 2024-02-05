@@ -16,7 +16,22 @@ const ContactMenuContainer = styled.div /*style*/`
   bottom: 8.5rem;
   display: flex;
   flex-direction: column;
+
+  @media (min-width: 360px) and (max-width: 900px) {
+    justify-content: flex-end;
+    bottom: 3.5rem;
+
+}
 `;
+
+const H1 = styled.h1 /*style*/`
+
+ @media (min-width: 360px) and (max-width: 900px) {
+  
+    font-size:2rem;
+ 
+  }
+`
 
 const ContactButton = styled.a /*style*/`
   text-decoration: none;
@@ -33,32 +48,49 @@ const ContactButton = styled.a /*style*/`
 
   &:hover {
     background-color: #f0f0f0;
+    transform:scale(1.05)
+  }
+
+  &.telefono{
+  background-color:rgb(37,37,88);
+  color:white;
+  }
+  &.wa {
+  background-color:rgb(60,106,30);
+  color:white;
+  }
+  &.mail {
+  background-color:rgb(159,32,38);
+  color:white;
   }
 `;
 
-const ContactMenu = () => {
+const ContactMenu = ({appearList}) => {
   const phoneNumber = '4774499764'; // Replace with your phone number
   const whatsappNumber = '+524774499764'; // Replace with your WhatsApp number
   const email = 'example@example.com'; // Replace with your email address
 
   const abrirWhatsApp = () => {
-    const mensaje = encodeURIComponent("Buenos días, requiero ayuda para un servicio de fumigación");
+    const mensaje = encodeURIComponent("Hola, requiero ayuda para un servicio de fumigación");
     window.open(`https://wa.me/${whatsappNumber}?text=${mensaje}`, '_blank', 'noopener,noreferrer');
 
   }
 
+ 
   return (
     <ContactMenuContainer>
-      <h1>Contactanos para agendar tu servicio!</h1>
-      <ContactButton href={`tel:${phoneNumber}`}>
+      <H1 style={{fontWeight:"bolder"}}>Contactanos para agendar tu servicio!</H1>
+      <ContactButton  className="telefono" href={`tel:${phoneNumber}`}>
         <FontAwesomeIcon icon={faPhone} style={{ marginRight: '5px' }} />
         Llamar Directo
       </ContactButton>
-      <ContactButton onClick={abrirWhatsApp}>
+      <ContactButton className="wa" onClick={abrirWhatsApp}>
         <FontAwesomeIcon icon={faWhatsapp} style={{ marginRight: '5px' }} />
         WhatsApp
       </ContactButton>
-      <ContactButton href={`mailto:${email}`}>
+      <ContactButton className="mail"href={`mailto:${email}`}
+      onClick={appearList}
+      >
         <FontAwesomeIcon icon={faEnvelope} style={{ marginRight: '5px' }} />
         Enviar Email
       </ContactButton>
