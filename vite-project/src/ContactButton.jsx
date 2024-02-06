@@ -67,7 +67,7 @@ const ContactButton = styled.a /*style*/`
 
 const ContactMenu = ({appearList}) => {
   const phoneNumber = '4774499764'; // Replace with your phone number
-  const whatsappNumber = '+524774499764'; // Replace with your WhatsApp number
+  const whatsappNumber = '+524772287565'; // Replace with your WhatsApp number
   const email = 'example@example.com'; // Replace with your email address
 
   const abrirWhatsApp = () => {

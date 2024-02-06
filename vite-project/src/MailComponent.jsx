@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import emailjs from 'emailjs-com';
 import styled from "styled-components";
 import image1 from "../../assets/pictures/Pest-Control-Frost-1169748167-1.png"
 import image2 from "../../assets/pictures/logo nombre'.png"
@@ -93,6 +94,7 @@ transform:scale(.75);
 function MailComponent() {
   const [count, setCount] = useState(0)
   const [nombre,setNombre] = useState('')
+  const [mensaje, setMensaje] = useState('')
   const [apellidos,setApellidos] = useState('')
   const [telefono, setTelefono] = useState('')
   const [tipoCliente, setTiipoCliente] =useState('')
@@ -139,6 +141,20 @@ function MailComponent() {
     setEsVisible(false)
 }
 
+const mensajeEntered = (e) => {
+setMensaje(e.target.value);
+console.log(mensaje);
+
+}
+
+const templateParams = {
+  to_name: `${nombre} ${apellidos}`,
+  phone: telefono,
+  email: mail,
+  client_type: tipoCliente,
+  message: mensaje
+}
+
 // useEffect(() => {
 //   // Update the document title using the browser API
 //   appearList();
@@ -148,6 +164,21 @@ function MailComponent() {
 
   const handleSubmit = (e) => {
   e.preventDefault();
+
+  emailjs.send(
+    'service_3c7f7qm',
+    "template_hs6oopc",
+    templateParams,
+    "XUyd0V_5KWYe3BPf1"
+  )
+  .then((res) => {
+    console.log("Mensaje enviado exitosamente",res)
+  })
+  .catch((err) =>{
+    console.log("Hubo un error al enviar el correo",err)
+  })
+
+  setEsVisible (false)
 
   } 
     return (
@@ -161,7 +192,8 @@ function MailComponent() {
   <ContactMenu appearList={appearList}> </ContactMenu>
     )} 
   {esVisible && (
-    <EmailForm>
+    <EmailForm
+    onSubmit={handleSubmit}>
    <label> Email:</label>
    <input
    type="text"
@@ -236,6 +268,16 @@ function MailComponent() {
       <option value="Industrial"/>
       <option value="Otros"/>
     </datalist>
+    <label>
+      Descripción del problema
+    </label>
+    <input
+    type='text'
+    value={mensaje}
+    onChange={mensajeEntered}
+    >
+    </input>
+    <button type='submit'>Enviar</button>
 
     </EmailForm>
     )}
