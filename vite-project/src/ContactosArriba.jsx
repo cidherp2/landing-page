@@ -3,22 +3,29 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faEnvelope, faGlobe, faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import Footer from './Footer';
 
 const ContactMenuContainer = styled.div /*style*/`
   position: fixed;
+  color:white;
   gap: 1.5rem;
-  top: 0;
-  right: 0;
+  filter: drop-shadow(-1px 5px 10px #000000);
+  top: 1.5rem;
+  right: 1rem;
   padding: 10px;
-  width: 50%;
+  width: 100%;
+  justify-content:center;
+  height: fit-content;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   z-index: 999;
   @media (min-width: 360px) and (max-width: 900px) {
    width:100%;
-   width:100%;
+   height:5%;
+   
    flex-direction:row;
+   background-color:rgb(37,37,88);
   
   
   }
@@ -28,6 +35,7 @@ const ContactButton = styled.a /*style*/`
   text-decoration: none;
   opacity: 0.5;
   border-radius: 10px;
+  border: 1px solid white;
   padding: 10px;
   text-align: center;
   cursor: pointer;
@@ -67,15 +75,38 @@ const ContactButton = styled.a /*style*/`
    width:100%;
    flex-direction:row;
    background:none;
+   border:none;
+   color:white;
+
+   &.telefono {
+   
+   color: white;
+ }
+
+ &.wa {
+   
+   color: white;
+ }
+
+ &.mail {
+   
+   color: white;
+ }
+
+ &.web {
+  
+   color: white;
+ }
+   
+  
   
   }
 `;
 
 const GoToBackButton = styled.button /*style*/`
-  background-color: #007bff;
+ background-color:rgb(159,32,38);
+ border: 1px solid gray;
   color: white;
-  border: none;
-  border-radius: 50%;
   padding: 10px;
   cursor: pointer;
   position: fixed;
@@ -85,7 +116,9 @@ const GoToBackButton = styled.button /*style*/`
   font-size: 20px;
 `;
 
-const ContactosArriba = ({ appearContact }) => {
+const ContactosArriba = ({ appearContact, esVisibleBack,setEsVisibleBack,setLeftSideVisible} ) => {
+
+
   return (
     <>
       <ContactMenuContainer>
@@ -98,9 +131,12 @@ const ContactosArriba = ({ appearContact }) => {
           Visita nuestra Web
         </ContactButton>
       </ContactMenuContainer>
-      <GoToBackButton onClick={appearContact}>
-        <FontAwesomeIcon icon={faArrowAltCircleLeft} />
+      {esVisibleBack && (
+      <GoToBackButton onClick={() =>{ appearContact(),setEsVisibleBack(false),setLeftSideVisible(true)}}>
+        <h1 style={{fontSize:"1rem"}}> Regresar </h1>
+        
       </GoToBackButton>
+      )}
     </>
   );
 };

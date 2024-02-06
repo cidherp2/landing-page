@@ -8,6 +8,7 @@ const FooterContainer = styled.footer`
   color: white;
   padding: 20px;
   text-align: center;
+  position:relative
 `;
 
 const SocialIconsContainer = styled.div`

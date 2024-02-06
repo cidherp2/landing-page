@@ -65,7 +65,7 @@ const ContactButton = styled.a /*style*/`
   }
 `;
 
-const ContactMenu = ({appearList}) => {
+const ContactMenu = ({appearList,appearRegresarButton,setLeftSideVisible}) => {
   const phoneNumber = '4774499764'; // Replace with your phone number
   const whatsappNumber = '+524772287565'; // Replace with your WhatsApp number
   const email = 'example@example.com'; // Replace with your email address
@@ -88,8 +88,8 @@ const ContactMenu = ({appearList}) => {
         <FontAwesomeIcon icon={faWhatsapp} style={{ marginRight: '5px' }} />
         WhatsApp
       </ContactButton>
-      <ContactButton className="mail"href={`mailto:${email}`}
-      onClick={appearList}
+      <ContactButton className="mail"
+      onClick={() => {appearList(),appearRegresarButton(),setLeftSideVisible(false)}}
       >
         <FontAwesomeIcon icon={faEnvelope} style={{ marginRight: '5px' }} />
         Enviar Email

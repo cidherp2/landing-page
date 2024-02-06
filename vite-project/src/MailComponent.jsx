@@ -22,17 +22,41 @@ width : 95%;
   height:75%;
   display:flex;
   flex-direction:column;
-  gap: 1.5rem;
+  gap: 1rem;
  color:gray;
  align-self:center;
  justify-content:flex-start;
  position: relative;
  bottom:8.5rem;
+ align-items:center;
+
+ label{
+ display:none;
+ }
+
+ input {
+   width:80%;
+   height:3rem;
+   background:none;
+   }
 
  @media (min-width: 360px) and (max-width: 900px) {
    display:flex;
    width:100%;
    flex-direction:column;
+   margin-top:5rem;  
+   align-items:center;
+   gap:1.5rem;
+   label{
+ display:initial;
+ }
+
+   input {
+   width:80%;
+   height:3rem;
+   background:none;
+   }
+   
   }
 
   `
@@ -47,23 +71,26 @@ width : 100%;
 
   }
 
-
   `
 
 const LeftImageContainer = styled.div /*style*/ `
 width: 50%;
 padding:2rem;
+
 @media (min-width: 360px) and (max-width: 900px) {
    display:none;
   }
 `
 const RightSideContainer = styled.div /*style*/ `
   position: relative;
-  width: 50%;
+
+  
+  width:50%;
   height: auto;
   display: flex;
   flex-direction: column-reverse;
   justify-content: space-around;
+  
   
 
 
@@ -73,6 +100,7 @@ const RightSideContainer = styled.div /*style*/ `
     display: flex;
     flex-direction: column-reverse;
     justify-content: space-evenly;
+    border:none;
   }
 `;
 
@@ -83,11 +111,27 @@ height: 100%;
 aspect-ratio: 16/9;
 `
 const Imagenes2 = styled.img /*style*/ `
-transform:scale(.75);
+transform:scale(.7);
+position:relative;
+top:1.5rem;
+
 
 @media (min-width: 360px) and (max-width: 900px) {
-  
+  transform:scale(.75);
   }
+
+`
+
+const EnviarButton = styled.button /*style*/ `
+background-color:rgb(37,37,88);
+  width:75%;
+  border-radius:0px;
+@media (min-width: 360px) and (max-width: 900px) {
+  background-color:rgb(37,37,88);
+  width:75%;
+  border-radius:0px;
+  
+}
 
 `
 
@@ -102,6 +146,8 @@ function MailComponent() {
   const [validEmail, setIsValidEmail] = useState(true)
   const [esVisible, setEsVisible] = useState(false)
   const [esVisibleContact, setEsVisibleContact] = useState(true)
+  const [esVisibleBack, setEsVisibleBack] = useState(false)
+  const [leftSideVisible,setLeftSideVisible] =useState(true)
 
   const emailRegex =  /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -139,6 +185,10 @@ function MailComponent() {
   const appearContact = () => {
     setEsVisibleContact(true)
     setEsVisible(false)
+}
+
+const appearRegresarButton = () => {
+setEsVisibleBack(true)
 }
 
 const mensajeEntered = (e) => {
@@ -183,13 +233,16 @@ const templateParams = {
   } 
     return (
     <>
+    
 <LandingPageContainer>
+  
   <LeftImageContainer>
   <Imagenes src={image1} alt="hola"></Imagenes>
   </LeftImageContainer>
+ 
   <RightSideContainer>
     {esVisibleContact && (
-  <ContactMenu appearList={appearList}> </ContactMenu>
+  <ContactMenu appearList={appearList} appearRegresarButton={appearRegresarButton} setLeftSideVisible={setLeftSideVisible}> </ContactMenu>
     )} 
   {esVisible && (
     <EmailForm
@@ -248,6 +301,7 @@ const templateParams = {
       </label>
 
     <input
+    
     type='select'
     list='options'
     onFocus={menuAbierto}
@@ -273,18 +327,20 @@ const templateParams = {
     </label>
     <input
     type='text'
+    placeholder='Describe tu problema'
     value={mensaje}
     onChange={mensajeEntered}
     >
     </input>
-    <button type='submit'>Enviar</button>
+    <EnviarButton type='submit'>Enviar</EnviarButton>
 
     </EmailForm>
     )}
-    <ContactosArriba appearContact={appearContact}/>
+    <ContactosArriba appearContact={appearContact} esVisibleBack={esVisibleBack} setEsVisibleBack={setEsVisibleBack} setLeftSideVisible={setLeftSideVisible}/>
     <Imagenes2 src={image2} alt="hola"></Imagenes2>
     </RightSideContainer>
     </LandingPageContainer>
+
     
     </>
   )
