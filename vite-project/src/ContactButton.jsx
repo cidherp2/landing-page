@@ -65,8 +65,8 @@ const ContactButton = styled.a /*style*/`
   }
 `;
 
-const ContactMenu = ({appearList,appearRegresarButton,setLeftSideVisible}) => {
-  const phoneNumber = '4774499764'; // Replace with your phone number
+const ContactMenu = ({appearList,appearRegresarButton,setLeftSideVisible,setLogoVisible}) => {
+  const phoneNumber = '4772287565'; // Replace with your phone number
   const whatsappNumber = '+524772287565'; // Replace with your WhatsApp number
   const email = 'example@example.com'; // Replace with your email address
 
@@ -79,7 +79,7 @@ const ContactMenu = ({appearList,appearRegresarButton,setLeftSideVisible}) => {
  
   return (
     <ContactMenuContainer>
-      <H1 style={{fontWeight:"bolder"}}>Contactanos para agendar tu servicio!</H1>
+      <H1 style={{fontWeight:"bold" , color:"black"}}>¡Contáctanos Para Agendar Tu Servicio!</H1>
       <ContactButton  className="telefono" href={`tel:${phoneNumber}`}>
         <FontAwesomeIcon icon={faPhone} style={{ marginRight: '5px' }} />
         Llamar Directo
@@ -89,7 +89,7 @@ const ContactMenu = ({appearList,appearRegresarButton,setLeftSideVisible}) => {
         WhatsApp
       </ContactButton>
       <ContactButton className="mail"
-      onClick={() => {appearList(),appearRegresarButton(),setLeftSideVisible(false)}}
+      onClick={() => {appearList(),appearRegresarButton(),setLeftSideVisible(false),setLogoVisible(false)}}
       >
         <FontAwesomeIcon icon={faEnvelope} style={{ marginRight: '5px' }} />
         Enviar Email

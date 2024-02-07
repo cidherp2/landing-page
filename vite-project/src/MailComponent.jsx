@@ -7,6 +7,7 @@ import image3 from  "../../assets/pictures/textura.svg"
 import ContactMenu from "./ContactButton"
 import ContactosArriba from"./ContactosArriba"
 import Footer from './Footer';
+import Modal from './modalMensaje';
 
 import './App.css'
 import { faDisplay } from '@fortawesome/free-solid-svg-icons';
@@ -21,7 +22,7 @@ const Anuncio = styled.div /*style*/`
 width : 95%;
   height:75%;
   display:flex;
-  flex-direction:column;
+  flex-direction:row;
   gap: 1rem;
  color:gray;
  align-self:center;
@@ -29,6 +30,7 @@ width : 95%;
  position: relative;
  bottom:8.5rem;
  align-items:center;
+ flex-wrap:wrap;
 
  label{
  display:none;
@@ -38,7 +40,45 @@ width : 95%;
    width:80%;
    height:3rem;
    background:none;
+   color:black;
+   font-size:1.1rem;
+   
+
+   background: #f4f4f4; /* Light gray background color */
+    color: #333; /* Text color */
+    border: 1px solid #d4d4d4; /* Light gray border */
+    border-radius: 4px; /* Rounded corners */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+    transition: box-shadow 0.3s ease; /* Smooth transition on hover */
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 122, 255, 0.5); /* Adjusted box shadow on focus */
+    }
+
+   
    }
+
+ input#nombre {
+   width:45%;
+   }
+ input#apellidos {
+  width:45%;
+   }
+ input#telefono {
+  width:45%;
+  
+   }
+ input#mail {
+  width:45%;
+  
+   }
+ input#cliente {
+  
+   }
+   input#mensaje {
+    height: 10rem;
+  }
 
  @media (min-width: 360px) and (max-width: 900px) {
    display:flex;
@@ -55,7 +95,29 @@ width : 95%;
    width:80%;
    height:3rem;
    background:none;
+   font-size:1.2rem;
+   font-weight:bold;
    }
+
+   input#nombre {
+   width:80%;
+   
+  }
+input#apellidos {
+  width:80%;
+  }
+input#telefono {
+  width:80%;
+  }
+input#mail {
+  width:80%;
+  }
+input#cliente {
+  
+  }
+  input#mensaje {
+    
+ }
    
   }
 
@@ -76,14 +138,16 @@ width : 100%;
 const LeftImageContainer = styled.div /*style*/ `
 width: 50%;
 padding:2rem;
+background-color:rgb(37,37,88);
 
 @media (min-width: 360px) and (max-width: 900px) {
    display:none;
+   background-color:none;
   }
 `
 const RightSideContainer = styled.div /*style*/ `
   position: relative;
-
+  border: 1rem solid rgb(159,32,38);
   
   width:50%;
   height: auto;
@@ -124,13 +188,20 @@ top:1.5rem;
 
 const EnviarButton = styled.button /*style*/ `
 background-color:rgb(37,37,88);
-  width:75%;
-  border-radius:0px;
+  width:80%;
+
+  border: 1px solid #d4d4d4; /* Light gray border */
+    border-radius: 4px; /* Rounded corners */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+    transition: box-shadow 0.3s ease; /* Smooth transition on hover */
 @media (min-width: 360px) and (max-width: 900px) {
   background-color:rgb(37,37,88);
-  width:75%;
+  width:85%;
   border-radius:0px;
-  
+  border: 1px solid #d4d4d4; /* Light gray border */
+    border-radius: 4px; /* Rounded corners */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+    transition: box-shadow 0.3s ease; /* Smooth transition on hover */
 }
 
 `
@@ -148,6 +219,10 @@ function MailComponent() {
   const [esVisibleContact, setEsVisibleContact] = useState(true)
   const [esVisibleBack, setEsVisibleBack] = useState(false)
   const [leftSideVisible,setLeftSideVisible] =useState(true)
+  const [logoVisible, setLogoVisible] =useState(true)
+  const [modalVisible,setModalVisible] = useState(false)
+
+  const isSendDisabled = !nombre || !mail || !apellidos || !telefono || !tipoCliente || !mensaje
 
   const emailRegex =  /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -197,6 +272,14 @@ console.log(mensaje);
 
 }
 
+const modalActivado = (e) => {
+  setModalVisible(true);
+}
+const modaDesactivado = (e) => {
+
+  setModalVisible(false);
+}
+
 const templateParams = {
   to_name: `${nombre} ${apellidos}`,
   phone: telefono,
@@ -205,10 +288,11 @@ const templateParams = {
   message: mensaje
 }
 
-// useEffect(() => {
-//   // Update the document title using the browser API
-//   appearList();
-// });[]
+ useEffect(() => {
+   if (window.innerWidth <900){
+    setLogoVisible(true)
+   }
+ });[]
 
  
 
@@ -235,6 +319,8 @@ const templateParams = {
     <>
     
 <LandingPageContainer>
+
+  
   
   <LeftImageContainer>
   <Imagenes src={image1} alt="hola"></Imagenes>
@@ -242,17 +328,19 @@ const templateParams = {
  
   <RightSideContainer>
     {esVisibleContact && (
-  <ContactMenu appearList={appearList} appearRegresarButton={appearRegresarButton} setLeftSideVisible={setLeftSideVisible}> </ContactMenu>
+  <ContactMenu appearList={appearList} appearRegresarButton={appearRegresarButton} setLeftSideVisible={setLeftSideVisible} setLogoVisible = {setLogoVisible}> </ContactMenu>
     )} 
   {esVisible && (
     <EmailForm
     onSubmit={handleSubmit}>
-   <label> Email:</label>
+   <label for='mail'> Email:</label>
    <input
    type="text"
+   id='mail'
    value={mail}
    onChange={emailEntered}
    onBlur = {handleEmailValidation}
+   required
    placeholder='Escribe tu correo electrónico'
     />
     {!validEmail && mail !== '' && <p style={{ color: 'gray' }}>Este no es un correo válido</p>}
@@ -261,6 +349,7 @@ const templateParams = {
       Nombre:
     </label>
     <input
+    id='nombre'
     type="text"
     value={nombre}
     onChange = {nameEntered}
@@ -274,16 +363,18 @@ const templateParams = {
 
     <input  
     type="text"
+    id='apellidos'
     value = {apellidos}
     onChange={apellidoEntered}
     placeholder='Escribe tu apellido'
     >
     </input>
 
-    <label>
+    <label >
       Teléfono
       </label> 
       <input
+      id='telefono'
       type='text'
       value={telefono}
       placeholder='Escribe tu teléfono'
@@ -301,7 +392,7 @@ const templateParams = {
       </label>
 
     <input
-    
+    id='cliente'
     type='select'
     list='options'
     onFocus={menuAbierto}
@@ -326,21 +417,27 @@ const templateParams = {
       Descripción del problema
     </label>
     <input
+    id='mensaje'
     type='text'
     placeholder='Describe tu problema'
     value={mensaje}
     onChange={mensajeEntered}
     >
     </input>
-    <EnviarButton type='submit'>Enviar</EnviarButton>
+    <EnviarButton type='submit' disabled={isSendDisabled}
+    onClick={modalActivado}
+    >Enviar</EnviarButton>
 
     </EmailForm>
     )}
     <ContactosArriba appearContact={appearContact} esVisibleBack={esVisibleBack} setEsVisibleBack={setEsVisibleBack} setLeftSideVisible={setLeftSideVisible}/>
-    <Imagenes2 src={image2} alt="hola"></Imagenes2>
+
+    <Imagenes2 src={image2} alt="logo insects out"></Imagenes2>
     </RightSideContainer>
     </LandingPageContainer>
-
+    {modalVisible && (
+    <Modal modaDesactivado={modaDesactivado}></Modal>
+    )}
     
     </>
   )

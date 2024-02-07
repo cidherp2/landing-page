@@ -23,6 +23,8 @@ const ContactMenuContainer = styled.div /*style*/`
   @media (min-width: 360px) and (max-width: 900px) {
    width:100%;
    height:5%;
+   top: 0;
+  right: 0;
    
    flex-direction:row;
    background-color:rgb(37,37,88);
@@ -122,9 +124,9 @@ const ContactosArriba = ({ appearContact, esVisibleBack,setEsVisibleBack,setLeft
   return (
     <>
       <ContactMenuContainer>
-        <ContactButton className="telefono" href="tel:4771373134">
+        <ContactButton className="telefono" href="tel:4772287565">
           <FontAwesomeIcon icon={faPhone} style={{ marginRight: '5px' }} />
-          477-1373-134
+          477-228-7565
         </ContactButton>
         <ContactButton className="web" href="https://www.insectsout.com.mx/" target="_blank">
           <FontAwesomeIcon icon={faGlobe} style={{ marginRight: '5px' }} />
