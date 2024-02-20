@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import emailjs from 'emailjs-com';
 import styled from "styled-components";
-import image1 from "../../assets/pictures/Pest-Control-Frost-1169748167-1.png"
-import image2 from "../../assets/pictures/logo nombre'.png"
-import image3 from  "../../assets/pictures/textura.svg"
+import image1 from "../assets/pictures/Pest-Control-Frost-1169748167-1.png"
+import image2 from "../assets/pictures/logo nombre'.png"
+import image3 from  "../assets/pictures/textura.svg"
 import ContactMenu from "./ContactButton"
 import ContactosArriba from"./ContactosArriba"
 import Footer from './Footer';
