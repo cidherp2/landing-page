@@ -206,7 +206,7 @@ background-color:rgb(37,37,88);
 
 `
 
-function MailComponent() {
+function MainComponenSLP() {
   const [count, setCount] = useState(0)
   const [nombre,setNombre] = useState('')
   const [mensaje, setMensaje] = useState('')
@@ -329,7 +329,7 @@ const templateParams = {
   <RightSideContainer>
     {esVisibleContact && (
   <ContactMenu appearList={appearList} appearRegresarButton={appearRegresarButton} setLeftSideVisible={setLeftSideVisible} setLogoVisible = {setLogoVisible}
-  telefono={"4772287565"}
+  telefono={"4442081594"}
   > </ContactMenu>
     )} 
   {esVisible && (
@@ -433,7 +433,7 @@ const templateParams = {
     </EmailForm>
     )}
     <ContactosArriba appearContact={appearContact} esVisibleBack={esVisibleBack} setEsVisibleBack={setEsVisibleBack} setLeftSideVisible={setLeftSideVisible}
-    telefono={"477-228-7565"}
+    telefono={"444-208-1594"}
     />
 
     <Imagenes2 src={image2} alt="logo insects out"></Imagenes2>
@@ -447,4 +447,4 @@ const templateParams = {
   )
 }
 
-export default MailComponent
+export default MainComponenSLP

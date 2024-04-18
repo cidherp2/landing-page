@@ -2,8 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faEnvelope, faGlobe, faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
-import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
-import Footer from './Footer';
+
 
 const ContactMenuContainer = styled.div /*style*/`
   position: fixed;
@@ -118,15 +117,15 @@ const GoToBackButton = styled.button /*style*/`
   font-size: 20px;
 `;
 
-const ContactosArriba = ({ appearContact, esVisibleBack,setEsVisibleBack,setLeftSideVisible} ) => {
+const ContactosArriba = ({ appearContact, esVisibleBack,setEsVisibleBack,setLeftSideVisible,telefono} ) => {
 
 
   return (
     <>
       <ContactMenuContainer>
-        <ContactButton className="telefono" href="tel:4772287565">
+        <ContactButton className="telefono" href={`tel:${telefono}`}>
           <FontAwesomeIcon icon={faPhone} style={{ marginRight: '5px' }} />
-          477-228-7565
+         {telefono}
         </ContactButton>
         <ContactButton className="web" href="https://www.insectsout.com.mx/" target="_blank">
           <FontAwesomeIcon icon={faGlobe} style={{ marginRight: '5px' }} />

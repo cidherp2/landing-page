@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import { BrowserRouter as Router} from 'react-router-dom';
 import styled from "styled-components";
 import MailComponent from './MailComponent';
+import AppRoutes from './Routes';
 
 
 
@@ -8,8 +10,9 @@ function App() {
  
     return (
     <>
-<MailComponent>
-</MailComponent>
+    <Router basename='/'>
+<AppRoutes/>
+</Router>
 
     </>
   )
