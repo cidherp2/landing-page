@@ -88,12 +88,12 @@ const ContactMenu = ({appearList,appearRegresarButton,setLeftSideVisible,setLogo
         <FontAwesomeIcon icon={faWhatsapp} style={{ marginRight: '5px' }} />
         WhatsApp
       </ContactButton>
-      <ContactButton className="mail"
+      {/* <ContactButton className="mail"
       onClick={() => {appearList(),appearRegresarButton(),setLeftSideVisible(false),setLogoVisible(false)}}
       >
         <FontAwesomeIcon icon={faEnvelope} style={{ marginRight: '5px' }} />
         Enviar Email
-      </ContactButton>
+      </ContactButton> */}
     </ContactMenuContainer>
   );
 };
