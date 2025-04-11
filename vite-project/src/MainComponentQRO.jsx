@@ -3,9 +3,9 @@ import emailjs from 'emailjs-com';
 import styled from "styled-components";
 import image1 from "../assets/pictures/Pest-Control-Frost-1169748167-1.png"
 import image2 from "../assets/pictures/logo nombre'.png"
-import image3 from  "../assets/pictures/textura.svg"
+import image3 from "../assets/pictures/textura.svg"
 import ContactMenu from "./ContactButton"
-import ContactosArriba from"./ContactosArriba"
+import ContactosArriba from "./ContactosArriba"
 import Footer from './Footer';
 import Modal from './modalMensaje';
 
@@ -18,7 +18,7 @@ const Anuncio = styled.div /*style*/`
   color: gray;
   `
 
-  const EmailForm = styled.form /*style*/ `
+const EmailForm = styled.form /*style*/ `
 width : 95%;
   height:75%;
   display:flex;
@@ -122,7 +122,7 @@ input#cliente {
   }
 
   `
-  const LandingPageContainer = styled.div /*style*/ `
+const LandingPageContainer = styled.div /*style*/ `
 width : 100%;
  height:100% ;
  display:inline-flex;
@@ -208,27 +208,27 @@ background-color:rgb(37,37,88);
 
 function MainComponenQRO() {
   const [count, setCount] = useState(0)
-  const [nombre,setNombre] = useState('')
+  const [nombre, setNombre] = useState('')
   const [mensaje, setMensaje] = useState('')
-  const [apellidos,setApellidos] = useState('')
+  const [apellidos, setApellidos] = useState('')
   const [telefono, setTelefono] = useState('')
-  const [tipoCliente, setTiipoCliente] =useState('')
-  const [mail,setMail]= useState('')
+  const [tipoCliente, setTiipoCliente] = useState('')
+  const [mail, setMail] = useState('')
   const [validEmail, setIsValidEmail] = useState(true)
   const [esVisible, setEsVisible] = useState(false)
   const [esVisibleContact, setEsVisibleContact] = useState(true)
   const [esVisibleBack, setEsVisibleBack] = useState(false)
-  const [leftSideVisible,setLeftSideVisible] =useState(true)
-  const [logoVisible, setLogoVisible] =useState(true)
-  const [modalVisible,setModalVisible] = useState(false)
+  const [leftSideVisible, setLeftSideVisible] = useState(true)
+  const [logoVisible, setLogoVisible] = useState(true)
+  const [modalVisible, setModalVisible] = useState(false)
 
   const isSendDisabled = !nombre || !mail || !apellidos || !telefono || !tipoCliente || !mensaje
 
-  const emailRegex =  /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const emailEntered = (e) => {
     setMail(e.target.value)
-     }
+  }
 
   const handleEmailValidation = () => {
     setIsValidEmail(emailRegex.test(mail))
@@ -249,200 +249,201 @@ function MainComponenQRO() {
     setTiipoCliente(e.target.value)
   }
 
-  const menuAbierto =(e) => {
+  const menuAbierto = (e) => {
     setTiipoCliente('')
   }
 
   const appearList = () => {
     setEsVisible(true)
     setEsVisibleContact(false)
-}
+  }
   const appearContact = () => {
     setEsVisibleContact(true)
     setEsVisible(false)
-}
+  }
 
-const appearRegresarButton = () => {
-setEsVisibleBack(true)
-}
+  const appearRegresarButton = () => {
+    setEsVisibleBack(true)
+  }
 
-const mensajeEntered = (e) => {
-setMensaje(e.target.value);
-console.log(mensaje);
+  const mensajeEntered = (e) => {
+    setMensaje(e.target.value);
+    console.log(mensaje);
 
-}
+  }
 
-const modalActivado = (e) => {
-  setModalVisible(true);
-}
-const modaDesactivado = (e) => {
+  const modalActivado = (e) => {
+    setModalVisible(true);
+  }
+  const modaDesactivado = (e) => {
 
-  setModalVisible(false);
-}
+    setModalVisible(false);
+  }
 
-const templateParams = {
-  to_name: `${nombre} ${apellidos}`,
-  phone: telefono,
-  email: mail,
-  client_type: tipoCliente,
-  message: mensaje
-}
+  const templateParams = {
+    to_name: `${nombre} ${apellidos}`,
+    phone: telefono,
+    email: mail,
+    client_type: tipoCliente,
+    message: mensaje
+  }
 
- useEffect(() => {
-   if (window.innerWidth <900){
-    setLogoVisible(true)
-   }
- });[]
+  useEffect(() => {
+    if (window.innerWidth < 900) {
+      setLogoVisible(true)
+    }
+  });[]
 
- 
+
 
   const handleSubmit = (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  emailjs.send(
-    'service_3c7f7qm',
-    "template_hs6oopc",
-    templateParams,
-    "XUyd0V_5KWYe3BPf1"
-  )
-  .then((res) => {
-    console.log("Mensaje enviado exitosamente",res)
-  })
-  .catch((err) =>{
-    console.log("Hubo un error al enviar el correo",err)
-  })
+    emailjs.send(
+      'service_3c7f7qm',
+      "template_hs6oopc",
+      templateParams,
+      "XUyd0V_5KWYe3BPf1"
+    )
+      .then((res) => {
+        console.log("Mensaje enviado exitosamente", res)
+      })
+      .catch((err) => {
+        console.log("Hubo un error al enviar el correo", err)
+      })
 
-  setEsVisible (false)
+    setEsVisible(false)
 
-  } 
-    return (
+  }
+  return (
     <>
-    
-<LandingPageContainer>
 
-  
-  
-  <LeftImageContainer>
-  <Imagenes src={image1} alt="hola"></Imagenes>
-  </LeftImageContainer>
- 
-  <RightSideContainer>
-    {esVisibleContact && (
-  <ContactMenu appearList={appearList} appearRegresarButton={appearRegresarButton} setLeftSideVisible={setLeftSideVisible} setLogoVisible = {setLogoVisible}
-  telefono={"4424592120"}
-  > </ContactMenu>
-    )} 
-  {esVisible && (
-    <EmailForm
-    onSubmit={handleSubmit}>
-   <label for='mail'> Email:</label>
-   <input
-   type="text"
-   id='mail'
-   value={mail}
-   onChange={emailEntered}
-   onBlur = {handleEmailValidation}
-   required
-   placeholder='Escribe tu correo electrónico'
-    />
-    {!validEmail && mail !== '' && <p style={{ color: 'gray' }}>Este no es un correo válido</p>}
+      <LandingPageContainer>
 
-    <label>
-      Nombre:
-    </label>
-    <input
-    id='nombre'
-    type="text"
-    value={nombre}
-    onChange = {nameEntered}
-    placeholder='Escribe tu nombre'
-    >
-    </input>
 
-    <label>
-      Apellidos:
-    </label>
 
-    <input  
-    type="text"
-    id='apellidos'
-    value = {apellidos}
-    onChange={apellidoEntered}
-    placeholder='Escribe tu apellido'
-    >
-    </input>
+        <LeftImageContainer>
+          <Imagenes src={image1} alt="hola"></Imagenes>
+        </LeftImageContainer>
 
-    <label >
-      Teléfono
-      </label> 
-      <input
-      id='telefono'
-      type='text'
-      value={telefono}
-      placeholder='Escribe tu teléfono'
-      onKeyDown={(e) => {
-        if (!/[0-9]|Backspace/.test(e.key)) {
-          e.preventDefault();
-        }
-      }}
-      onChange={telefonoEntered}
-      >
-      </input>
+        <RightSideContainer>
+          {esVisibleContact && (
+            <ContactMenu appearList={appearList} appearRegresarButton={appearRegresarButton} setLeftSideVisible={setLeftSideVisible} setLogoVisible={setLogoVisible}
+              telefono={"4424592120"}
+              wati={"4791014260"}
+            > </ContactMenu>
+          )}
+          {esVisible && (
+            <EmailForm
+              onSubmit={handleSubmit}>
+              <label for='mail'> Email:</label>
+              <input
+                type="text"
+                id='mail'
+                value={mail}
+                onChange={emailEntered}
+                onBlur={handleEmailValidation}
+                required
+                placeholder='Escribe tu correo electrónico'
+              />
+              {!validEmail && mail !== '' && <p style={{ color: 'gray' }}>Este no es un correo válido</p>}
 
-      <label>
-        Tipo de cliente
-      </label>
+              <label>
+                Nombre:
+              </label>
+              <input
+                id='nombre'
+                type="text"
+                value={nombre}
+                onChange={nameEntered}
+                placeholder='Escribe tu nombre'
+              >
+              </input>
 
-    <input
-    id='cliente'
-    type='select'
-    list='options'
-    onFocus={menuAbierto}
-    placeholder='Elige el tipo de cliente'
-    value={tipoCliente}
-    onKeyDown={(e) => {
-      if (!/[0-9]|Backspace/.test(e.key)) {
-        e.preventDefault();
-      }
-    }}
-    onChange={tipoClienteEntered}
-    >
-    </input>
-    <datalist id="options">
-      <option value="Casa"/>
-      <option value="Departamento"/>
-      <option value="Negocio"/>
-      <option value="Industrial"/>
-      <option value="Otros"/>
-    </datalist>
-    <label>
-      Descripción del problema
-    </label>
-    <input
-    id='mensaje'
-    type='text'
-    placeholder='Describe tu problema'
-    value={mensaje}
-    onChange={mensajeEntered}
-    >
-    </input>
-    <EnviarButton type='submit' disabled={isSendDisabled}
-    onClick={modalActivado}
-    >Enviar</EnviarButton>
+              <label>
+                Apellidos:
+              </label>
 
-    </EmailForm>
-    )}
-    <ContactosArriba appearContact={appearContact} esVisibleBack={esVisibleBack} setEsVisibleBack={setEsVisibleBack} setLeftSideVisible={setLeftSideVisible}
-    telefono={"442-459-2120"}
-    />
+              <input
+                type="text"
+                id='apellidos'
+                value={apellidos}
+                onChange={apellidoEntered}
+                placeholder='Escribe tu apellido'
+              >
+              </input>
 
-    <Imagenes2 src={image2} alt="logo insects out"></Imagenes2>
-    </RightSideContainer>
-    </LandingPageContainer>
-    {modalVisible && (
-    <Modal modaDesactivado={modaDesactivado}></Modal>
-    )}
-    
+              <label >
+                Teléfono
+              </label>
+              <input
+                id='telefono'
+                type='text'
+                value={telefono}
+                placeholder='Escribe tu teléfono'
+                onKeyDown={(e) => {
+                  if (!/[0-9]|Backspace/.test(e.key)) {
+                    e.preventDefault();
+                  }
+                }}
+                onChange={telefonoEntered}
+              >
+              </input>
+
+              <label>
+                Tipo de cliente
+              </label>
+
+              <input
+                id='cliente'
+                type='select'
+                list='options'
+                onFocus={menuAbierto}
+                placeholder='Elige el tipo de cliente'
+                value={tipoCliente}
+                onKeyDown={(e) => {
+                  if (!/[0-9]|Backspace/.test(e.key)) {
+                    e.preventDefault();
+                  }
+                }}
+                onChange={tipoClienteEntered}
+              >
+              </input>
+              <datalist id="options">
+                <option value="Casa" />
+                <option value="Departamento" />
+                <option value="Negocio" />
+                <option value="Industrial" />
+                <option value="Otros" />
+              </datalist>
+              <label>
+                Descripción del problema
+              </label>
+              <input
+                id='mensaje'
+                type='text'
+                placeholder='Describe tu problema'
+                value={mensaje}
+                onChange={mensajeEntered}
+              >
+              </input>
+              <EnviarButton type='submit' disabled={isSendDisabled}
+                onClick={modalActivado}
+              >Enviar</EnviarButton>
+
+            </EmailForm>
+          )}
+          <ContactosArriba appearContact={appearContact} esVisibleBack={esVisibleBack} setEsVisibleBack={setEsVisibleBack} setLeftSideVisible={setLeftSideVisible}
+            telefono={"442-459-2120"}
+          />
+
+          <Imagenes2 src={image2} alt="logo insects out"></Imagenes2>
+        </RightSideContainer>
+      </LandingPageContainer>
+      {modalVisible && (
+        <Modal modaDesactivado={modaDesactivado}></Modal>
+      )}
+
     </>
   )
 }

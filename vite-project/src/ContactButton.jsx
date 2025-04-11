@@ -65,9 +65,9 @@ const ContactButton = styled.a /*style*/`
   }
 `;
 
-const ContactMenu = ({appearList,appearRegresarButton,setLeftSideVisible,setLogoVisible,telefono}) => {
+const ContactMenu = ({appearList,appearRegresarButton,setLeftSideVisible,setLogoVisible,telefono,wati}) => {
   const phoneNumber = telefono; // Replace with your phone number
-  const whatsappNumber = `+52${telefono}`; // Replace with your WhatsApp number
+  const whatsappNumber = `+52${wati ? wati : telefono}`; // Replace with your WhatsApp number
   const email = 'example@example.com'; // Replace with your email address
 
   const abrirWhatsApp = () => {
