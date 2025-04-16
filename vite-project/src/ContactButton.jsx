@@ -79,10 +79,20 @@ const ContactMenu = ({appearList,appearRegresarButton,setLeftSideVisible,setLogo
 
   }
   const abrirWhatsAppGoogleAds = () => {
-    
     const mensaje = encodeURIComponent("Hola, requiero ayuda para un servicio de fumigación");
-    gtag_report_conversion(`https://wa.me/${whatsappNumber}?text=${mensaje}`);
-    window.open(`https://wa.me/${whatsappNumber}?text=${mensaje}`, '_blank', 'noopener,noreferrer');
+    const url = `https://wa.me/${whatsappNumber}?text=${mensaje}`;
+  
+    const callback = () => {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    };
+  
+    gtag('event', 'conversion', {
+      send_to: 'AW-16970665561/a3yYCOittLkaENmcn5w_',
+      event_callback: callback
+    });
+  
+    return false;
+    
   }
 
  
