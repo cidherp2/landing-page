@@ -82,6 +82,7 @@ const ContactMenu = ({appearList,appearRegresarButton,setLeftSideVisible,setLogo
     
     const mensaje = encodeURIComponent("Hola, requiero ayuda para un servicio de fumigación");
     gtag_report_conversion(`https://wa.me/${whatsappNumber}?text=${mensaje}`);
+    window.open(`https://wa.me/${whatsappNumber}?text=${mensaje}`, '_blank', 'noopener,noreferrer');
   }
 
  
@@ -95,7 +96,7 @@ const ContactMenu = ({appearList,appearRegresarButton,setLeftSideVisible,setLogo
       {window.location.pathname === `/qro` && (
       <ContactButton className="wa" onClick={abrirWhatsAppGoogleAds}>
         <FontAwesomeIcon icon={faWhatsapp} style={{ marginRight: '5px' }} />
-        WhatsAppQRO
+        WhatsApp
       </ContactButton>
       )}
       {window.location.pathname !== `/qro` && (
