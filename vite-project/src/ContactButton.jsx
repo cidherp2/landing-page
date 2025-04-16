@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { gtag_report_conversion } from './utils/gtag';
 
 const ContactMenuContainer = styled.div /*style*/`
   width: 95%;
@@ -71,9 +72,16 @@ const ContactMenu = ({appearList,appearRegresarButton,setLeftSideVisible,setLogo
   const email = 'example@example.com'; // Replace with your email address
 
   const abrirWhatsApp = () => {
+    
     const mensaje = encodeURIComponent("Hola, requiero ayuda para un servicio de fumigación");
     window.open(`https://wa.me/${whatsappNumber}?text=${mensaje}`, '_blank', 'noopener,noreferrer');
+    
 
+  }
+  const abrirWhatsAppGoogleAds = () => {
+    
+    const mensaje = encodeURIComponent("Hola, requiero ayuda para un servicio de fumigación");
+    gtag_report_conversion(`https://wa.me/${whatsappNumber}?text=${mensaje}`);
   }
 
  
@@ -84,10 +92,18 @@ const ContactMenu = ({appearList,appearRegresarButton,setLeftSideVisible,setLogo
         <FontAwesomeIcon icon={faPhone} style={{ marginRight: '5px' }} />
         Llamar Directo
       </ContactButton>
+      {window.location.pathname === `/qro` && (
+      <ContactButton className="wa" onClick={abrirWhatsAppGoogleAds}>
+        <FontAwesomeIcon icon={faWhatsapp} style={{ marginRight: '5px' }} />
+        WhatsAppQRO
+      </ContactButton>
+      )}
+      {window.location.pathname !== `/qro` && (
       <ContactButton className="wa" onClick={abrirWhatsApp}>
         <FontAwesomeIcon icon={faWhatsapp} style={{ marginRight: '5px' }} />
         WhatsApp
       </ContactButton>
+      )}
       {/* <ContactButton className="mail"
       onClick={() => {appearList(),appearRegresarButton(),setLeftSideVisible(false),setLogoVisible(false)}}
       >
