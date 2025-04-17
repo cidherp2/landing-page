@@ -130,7 +130,8 @@ width : 100%;
  @media (min-width: 360px) and (max-width: 900px) {
    display:flex;
    flex-direction:column;
-
+   justify-content:center;
+  
   }
 
   `
@@ -175,13 +176,21 @@ height: 100%;
 aspect-ratio: 16/9;
 `
 const Imagenes2 = styled.img /*style*/ `
-transform:scale(.7);
-position:relative;
-top:1.5rem;
+width: 100%;
+  height: 900px; // set the visible area (adjust as needed)
+  object-fit: cover;
+  object-position: center;
+  transform: scale(0.7);
+  position: relative;
+  top: 1.5rem;
 
 
 @media (min-width: 360px) and (max-width: 900px) {
-  transform:scale(.75);
+  all:unset; 
+  transform:scale(1);
+  position: relative;
+  top: 1.5rem;
+
   }
 
 `

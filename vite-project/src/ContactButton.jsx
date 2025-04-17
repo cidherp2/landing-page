@@ -6,6 +6,7 @@ import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { gtag_report_conversion } from './utils/gtag';
 
 const ContactMenuContainer = styled.div /*style*/`
+margin-top:3rem;
   width: 95%;
   display: flex;
   flex-direction: column;
@@ -26,6 +27,7 @@ const ContactMenuContainer = styled.div /*style*/`
 `;
 
 const H1 = styled.h1 /*style*/`
+margin:0;
 
  @media (min-width: 360px) and (max-width: 900px) {
   
