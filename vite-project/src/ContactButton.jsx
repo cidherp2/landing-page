@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
-import { gtag_report_conversion } from './utils/gtag';
 
 const ContactMenuContainer = styled.div /*style*/`
 margin-top:3rem;

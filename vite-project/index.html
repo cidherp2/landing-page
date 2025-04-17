@@ -7,75 +7,33 @@
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-534BQK2B');</script>
-  <!-- End Google Tag Manager -->
- <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-H6FYT1605C"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-H6FYT1605C');
-</script>
+  
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/assets/pictures/Sin título-10-01.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Insects Out</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap">
-    <!-- Google tag (gtag.js) -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16970665561&l=queretaroDataLayer"></script>
-    <script>
-      window.queretaroDataLayer = window.queretaroDataLayer || [];
-      function gtag(){queretaroDataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'AW-16970665561');
-    </script> -->
-    <!-- <script>
-      gtag('event', 'conversion', {
-        'send_to': 'AW-16970665561/E6IyCIuY5LIaENmcn5w_'
-      });
-    </script> -->
-    <!-- Google tag (gtag.js) -->
-<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=AW-803120940&l=leonDataLayer"></script>
-<script>
-  window.leonDataLayer = window.leonDataLayer || [];
-  function gtag(){leonDataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-803120940');
-</script> -->
-<!-- Google tag (gtag.js) -->
-<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16466862533&l=slpDataLayer"></script>
-<script>
-  window.slpDataLayer = window.slpDataLayer || [];
-  function gtag(){slpDataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-16466862533');
-</script> -->
+  
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   // Dynamically configure gtag based on URL path
-  const pathname = window.location.pathname;
 
-  if (pathname.includes('/qro')) {
+
+  if (window.location.pathname === '/qro') {
     gtag('config', 'AW-16970665561'); // Querétaro
-  } else if (pathname.includes('/')) {
+    gtag('event', 'conversion', {
+    'send_to': 'AW-16970665561/E6IyCIuY5LIaENmcn5w_'
+  });
+  } else if (window.location.pathname === '/') {
     gtag('config', 'AW-803120940'); // León
-  } else if (pathname.includes('/slp')|| pathname.includes('/SLP')) {
+  } else if (window.location.pathname === '/slp'|| window.location.pathname === '/SLP') {
     gtag('config', 'AW-16466862533'); // San Luis Potosí
   }
 </script>
 
-<script>
-  gtag('event', 'conversion', {
-    'send_to': 'AW-16970665561/E6IyCIuY5LIaENmcn5w_'
-  });
-</script>
 
 
   </head>
