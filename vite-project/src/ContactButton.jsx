@@ -81,19 +81,17 @@ const ContactMenu = ({appearList,appearRegresarButton,setLeftSideVisible,setLogo
   const abrirWhatsAppGoogleAds = () => {
     const mensaje = encodeURIComponent("Hola, requiero ayuda para un servicio de fumigación");
     const url = `https://wa.me/${whatsappNumber}?text=${mensaje}`;
+    
+    // Abrir WhatsApp inmediatamente (lo más importante para el usuario)
+    window.open(url, '_blank', 'noopener,noreferrer');
   
-    const callback = () => {
-      window.open(url, '_blank', 'noopener,noreferrer');
-    };
-  
+    // Enviar el evento de conversión sin depender de callback
     gtag('event', 'conversion', {
-      send_to: 'AW-16970665561/a3yYCOittLkaENmcn5w_',
-      event_callback: callback
+      send_to: 'AW-16970665561/a3yYCOittLkaENmcn5w_'
     });
   
     return false;
-    
-  }
+  };
 
  
   return (
