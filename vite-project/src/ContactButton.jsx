@@ -94,7 +94,21 @@ const ContactMenu = ({appearList,appearRegresarButton,setLeftSideVisible,setLogo
   
     return false;
   };
-  const abrirWhatsAppGoogleAdsReutilizable = (etiquta,conversion_event ) => {
+  const abrirWhatsAppGoogleAdsReutilizablelEO = (etiquta,conversion_event ) => {
+    const mensaje = encodeURIComponent("Hola, requiero ayuda para un servicio de fumigación");
+    const url = `https://wa.me/${whatsappNumber}?text=${mensaje}`;
+    
+    // Abrir WhatsApp inmediatamente (lo más importante para el usuario)
+    window.open(url, '_blank', 'noopener,noreferrer');
+  
+    // Enviar el evento de conversión sin depender de callback
+    gtag('event', 'conversion', {
+      send_to: `${etiquta}/${conversion_event}`
+    });
+  
+    return false;
+  };
+  const abrirWhatsAppGoogleAdsReutilizableSLP = (etiquta,conversion_event ) => {
     const mensaje = encodeURIComponent("Hola, requiero ayuda para un servicio de fumigación");
     const url = `https://wa.me/${whatsappNumber}?text=${mensaje}`;
     
@@ -124,13 +138,13 @@ const ContactMenu = ({appearList,appearRegresarButton,setLeftSideVisible,setLogo
       </ContactButton>
       )}
       {window.location.pathname === `/` && (
-      <ContactButton className="wa" onClick={()=>{abrirWhatsAppGoogleAdsReutilizable("AW-803120940","XBV7CKmX_LkaEKzO")}}>
+      <ContactButton className="wa" onClick={()=>{abrirWhatsAppGoogleAdsReutilizablelEO("AW-803120940","XBV7CKmX_LkaEKzO")}}>
         <FontAwesomeIcon icon={faWhatsapp} style={{ marginRight: '5px' }} />
         WhatsApp
       </ContactButton>
       )}
       {(window.location.pathname === '/slp' || window.location.pathname === '/SLP' ) &&(
-      <ContactButton className="wa" onClick={()=>{abrirWhatsAppGoogleAdsReutilizable('AW-16466862533','wYhyCKOB9LkaEMXDgaw9')}}>
+      <ContactButton className="wa" onClick={()=>{abrirWhatsAppGoogleAdsReutilizableSLP('AW-16466862533','wYhyCKOB9LkaEMXDgaw9')}}>
         <FontAwesomeIcon icon={faWhatsapp} style={{ marginRight: '5px' }} />
         WhatsApp
       </ContactButton>
