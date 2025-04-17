@@ -66,7 +66,7 @@ const ContactButton = styled.a /*style*/`
   }
 `;
 
-const ContactMenu = ({appearList,appearRegresarButton,setLeftSideVisible,setLogoVisible,telefono,wati}) => {
+const ContactMenu = ({appearList,appearRegresarButton,setLeftSideVisible,setLogoVisible,telefono,wati,etiqueta,conversion_event}) => {
   const phoneNumber = telefono; // Replace with your phone number
   const whatsappNumber = `+52${wati ? wati : telefono}`; // Replace with your WhatsApp number
   const email = 'example@example.com'; // Replace with your email address
@@ -92,6 +92,20 @@ const ContactMenu = ({appearList,appearRegresarButton,setLeftSideVisible,setLogo
   
     return false;
   };
+  const abrirWhatsAppGoogleAdsReutilizable = (etiquta,conversion_event ) => {
+    const mensaje = encodeURIComponent("Hola, requiero ayuda para un servicio de fumigación");
+    const url = `https://wa.me/${whatsappNumber}?text=${mensaje}`;
+    
+    // Abrir WhatsApp inmediatamente (lo más importante para el usuario)
+    window.open(url, '_blank', 'noopener,noreferrer');
+  
+    // Enviar el evento de conversión sin depender de callback
+    gtag('event', 'conversion', {
+      send_to: `${etiquta}/${conversion_event}`
+    });
+  
+    return false;
+  };
 
  
   return (
@@ -107,12 +121,19 @@ const ContactMenu = ({appearList,appearRegresarButton,setLeftSideVisible,setLogo
         WhatsApp
       </ContactButton>
       )}
-      {window.location.pathname !== `/qro` && (
+      {window.location.pathname === `/` && (
+      <ContactButton className="wa" onClick={()=>{abrirWhatsAppGoogleAdsReutilizable(etiqueta,conversion_event)}}>
+        <FontAwesomeIcon icon={faWhatsapp} style={{ marginRight: '5px' }} />
+        WhatsAppLeo
+      </ContactButton>
+      )}
+      {window.location.pathname !== `/qro` && window.location.pathname !== `/`  &&(
       <ContactButton className="wa" onClick={abrirWhatsApp}>
         <FontAwesomeIcon icon={faWhatsapp} style={{ marginRight: '5px' }} />
         WhatsApp
       </ContactButton>
       )}
+      
       {/* <ContactButton className="mail"
       onClick={() => {appearList(),appearRegresarButton(),setLeftSideVisible(false),setLogoVisible(false)}}
       >
