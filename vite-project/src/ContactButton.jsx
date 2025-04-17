@@ -127,8 +127,8 @@ const ContactMenu = ({appearList,appearRegresarButton,setLeftSideVisible,setLogo
         WhatsApp
       </ContactButton>
       )}
-      {window.location.pathname !== `/qro` && window.location.pathname !== `/`  &&(
-      <ContactButton className="wa" onClick={abrirWhatsApp}>
+      {window.location.pathname === '/slp' &&(
+      <ContactButton className="wa" onClick={()=>{abrirWhatsAppGoogleAdsReutilizable(etiqueta,conversion_event)}}>
         <FontAwesomeIcon icon={faWhatsapp} style={{ marginRight: '5px' }} />
         WhatsApp
       </ContactButton>

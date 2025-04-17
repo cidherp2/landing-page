@@ -330,6 +330,8 @@ const templateParams = {
     {esVisibleContact && (
   <ContactMenu appearList={appearList} appearRegresarButton={appearRegresarButton} setLeftSideVisible={setLeftSideVisible} setLogoVisible = {setLogoVisible}
   telefono={"4442081594"}
+  etiqueta={'AW-16466862533'}
+  conversion_event={'wYhyCKOB9LkaEMXDgaw9'}
   > </ContactMenu>
     )} 
   {esVisible && (
