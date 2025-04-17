@@ -58,10 +58,19 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'AW-16970665561');
-  gtag('config', 'AW-803120940');
-  gtag('config', 'AW-16466862533');
+
+  // Dynamically configure gtag based on URL path
+  const pathname = window.location.pathname;
+
+  if (pathname.includes('/qro')) {
+    gtag('config', 'AW-16970665561'); // Querétaro
+  } else if (pathname.includes('/')) {
+    gtag('config', 'AW-803120940'); // León
+  } else if (pathname.includes('/slp')|| pathname.includes('/SLP')) {
+    gtag('config', 'AW-16466862533'); // San Luis Potosí
+  }
 </script>
+
 <script>
   gtag('event', 'conversion', {
     'send_to': 'AW-16970665561/E6IyCIuY5LIaENmcn5w_'
