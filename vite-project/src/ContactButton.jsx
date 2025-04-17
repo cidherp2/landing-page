@@ -124,7 +124,7 @@ const ContactMenu = ({appearList,appearRegresarButton,setLeftSideVisible,setLogo
       {window.location.pathname === `/` && (
       <ContactButton className="wa" onClick={()=>{abrirWhatsAppGoogleAdsReutilizable(etiqueta,conversion_event)}}>
         <FontAwesomeIcon icon={faWhatsapp} style={{ marginRight: '5px' }} />
-        WhatsAppLeo
+        WhatsApp
       </ContactButton>
       )}
       {window.location.pathname !== `/qro` && window.location.pathname !== `/`  &&(
