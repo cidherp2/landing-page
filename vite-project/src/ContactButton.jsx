@@ -124,13 +124,13 @@ const ContactMenu = ({appearList,appearRegresarButton,setLeftSideVisible,setLogo
       </ContactButton>
       )}
       {window.location.pathname === `/` && (
-      <ContactButton className="wa" onClick={()=>{abrirWhatsAppGoogleAdsReutilizable(etiqueta,conversion_event)}}>
+      <ContactButton className="wa" onClick={()=>{abrirWhatsAppGoogleAdsReutilizable("AW-803120940","XBV7CKmX_LkaEKzO")}}>
         <FontAwesomeIcon icon={faWhatsapp} style={{ marginRight: '5px' }} />
         WhatsApp
       </ContactButton>
       )}
       {(window.location.pathname === '/slp' || window.location.pathname === '/SLP' ) &&(
-      <ContactButton className="wa" onClick={()=>{abrirWhatsAppGoogleAdsReutilizable(etiqueta,conversion_event)}}>
+      <ContactButton className="wa" onClick={()=>{abrirWhatsAppGoogleAdsReutilizable('AW-16466862533','wYhyCKOB9LkaEMXDgaw9')}}>
         <FontAwesomeIcon icon={faWhatsapp} style={{ marginRight: '5px' }} />
         WhatsApp
       </ContactButton>
