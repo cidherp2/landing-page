@@ -125,7 +125,7 @@ const ContactMenu = ({appearList,appearRegresarButton,setLeftSideVisible,setLogo
  
   return (
     <ContactMenuContainer>
-      <H1 style={{fontWeight:"bold" , color:"black"}}>¡Contáctanos Para Agendar Tu Servicio!</H1>
+      <H1 style={{fontWeight:"bold" , color:"black"}}>¡Contáctanos Para Cotizar Sin Costo Tu Servicio!</H1>
       <ContactButton  className="telefono" href={`tel:${phoneNumber}`}>
         <FontAwesomeIcon icon={faPhone} style={{ marginRight: '5px' }} />
         Llamar Directo
