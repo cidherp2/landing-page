@@ -339,7 +339,7 @@ function MainComponenQRO() {
           {esVisibleContact && (
             <ContactMenu appearList={appearList} appearRegresarButton={appearRegresarButton} setLeftSideVisible={setLeftSideVisible} setLogoVisible={setLogoVisible}
               telefono={"4424592120"}
-              wati={"4791014260"}
+              // wati={"4791014260"}
             > </ContactMenu>
           )}
           {esVisible && (
